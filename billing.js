@@ -1,15 +1,10 @@
 // Data Coupling: функція приймає лише необхідні примітиви (city, weightKg)
 function calculateDeliveryCost(city, weightKg) {
-    let baseRate = 110.0;
-    if (city === "Ivano-Frankivsk") {
-        baseRate = 50.0;
-    } else if (city === "Kyiv") {
-        baseRate = 80.0;
-    }
-    return baseRate + (weightKg * 15.0);
+    const baseRate = city === "Ivano-Frankivsk" ? 50.0 : 110.0;
+    return baseRate + (weightKg * 12.0);
 }
 
-// Data Coupling + ліквідація Control Coupling (окрема функція для стандартного рахунку)
+// Data Coupling + ліквідація Control Coupling (окрема функція для стандартного інвойсу)
 function processStandardInvoice(amount, city, weightKg, taxRate = 0.20) {
     const delivery = calculateDeliveryCost(city, weightKg);
     const total = (amount * (1 + taxRate)) + delivery;
